@@ -1,0 +1,125 @@
+[
+        {
+                "id": 1,
+                "role": "CUSTOMER",
+                "login": "Omari69@gmail.com",
+                "password": "aN9sAXrasYwJ6SW",
+                "balance": 39.84
+        },
+        {
+                "id": 2,
+                "role": "SELLER",
+                "login": "Carroll74@hotmail.com",
+                "password": "h3oSRY48lMdZz55",
+                "balance": 27.06
+        },
+        {
+                "id": 3,
+                "login": "Milford.Douglas66@hotmail.com",
+                "password": "svBmkAhdOZSSho_",
+                "balance": 87.13
+        },
+        {
+                "id": 4,
+                "role": "SELLER",
+                "login": "Cassidy.Lesch25@yahoo.com",
+                "password": "YSWeo428zoSfTH1",
+                "balance": 52.75
+        },
+        {
+                "id": 5,
+                "login": "Maryjane_Raynor@gmail.com",
+                "password": "5sVrqhgqagM5VQ3",
+                "balance": 79.47
+        },
+        {
+                "id": 6,
+                "login": "Drake_Kihn91@gmail.com",
+                "password": "oJDNXiG8mi_QOfk",
+                "balance": 44.27
+        },
+        {
+                "id": 7,
+                "login": "Demarco.MacGyver87@hotmail.com",
+                "password": "aldWi3SaiquEMs8",
+                "balance": 30.88
+        },
+        {
+                "id": 8,
+                "login": "Doug_Strosin19@yahoo.com",
+                "password": "G2H78EzipedEwGb",
+                "balance": 68.44
+        },
+        {
+                "id": 9,
+                "login": "Fredy17@yahoo.com",
+                "password": "HhNfXXluakvDQwl",
+                "balance": 92.72
+        },
+        {
+                "id": 10,
+                "login": "Janick0@yahoo.com",
+                "password": "JR7JVvitnsSiWBN",
+                "balance": 27.72
+        },
+        {
+                "id": 11,
+                "login": "Tina_Stokes@hotmail.com",
+                "password": "bwwZMjhcXWyAh4j",
+                "balance": 29.01
+        },
+        {
+                "id": 12,
+                "login": "Elmer_Zboncak22@yahoo.com",
+                "password": "1sH79712JYHnbai",
+                "balance": 66.65
+        },
+        {
+                "id": 13,
+                "login": "Lauryn.Treutel7@hotmail.com",
+                "password": "hUwLXnYlveoljGd",
+                "balance": 80.5
+        },
+        {
+                "id": 14,
+                "login": "Haley72@yahoo.com",
+                "password": "eFgS6a_rzdYxsuA",
+                "balance": 84.98
+        },
+        {
+                "id": 15,
+                "login": "Ulices.Kirlin77@yahoo.com",
+                "password": "8BSIT9qn5SBxVMH",
+                "balance": 27.41
+        },
+        {
+                "id": 16,
+                "login": "Lori24@gmail.com",
+                "password": "W7sDFJSmZehCJOr",
+                "balance": 12.81
+        },
+        {
+                "id": 17,
+                "login": "Yvette.Marquardt61@gmail.com",
+                "password": "pfJV5wRQp0GXDwr",
+                "balance": 10.39
+        },
+        {
+                "id": 18,
+                "login": "Fleta24@gmail.com",
+                "password": "rYF7vlrGf1X78lC",
+                "balance": 65.89
+        },
+        {
+                "id": 19,
+                "login": "Ines14@gmail.com",
+                "password": "jzhIzwppIRAQJE6",
+                "balance": 12.35
+        },
+        {
+                "id": 20,
+                "login": "Sandra.Wyman38@yahoo.com",
+                "password": "kwRauR8VDtHJZYH",
+                "balance": 97.01
+        }
+]
