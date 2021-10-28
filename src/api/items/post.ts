@@ -1,14 +1,20 @@
-import { Request, Response } from "express";
-import { ITEMS, save } from "../../data/mocks";
-import { pick } from "lodash";
-import { ItemEntity } from "../../entities/item.entity";
+import { Response } from "express";
+import { assign, pick } from "lodash";
+import { ItemEntity } from "../../db/entities/item.entity";
+import { UserRoleEnum } from "../../enums/user-role.enum";
+import { IRequest } from "../../tools/types";
+import { HttpError, wrapper } from "../../tools/wrapper.helpers";
 
-export const postItem = async (req: Request, res: Response) => {
-  const partialItem: Partial<ItemEntity> = pick(req.body, "sellerId", "title", "price", "quantity");
+export const postItems = wrapper(async (req: IRequest, res: Response) => {
+  const user = req.user;
 
-  const id = Math.max(...ITEMS.map(i => i.id)) + 1;
-  ITEMS.push(new ItemEntity({ ...partialItem, id }));
+  if (user.role !== UserRoleEnum.SELLER) {
+    throw new HttpError(`This action is not permitted for role ${user.role}`);
+  }
 
-  await save();
-  res.send("olololo");
-};
+  const item = new ItemEntity();
+  assign(item, pick(req.body, "price", "quantity", "title"));
+  item.seller = user;
+  await item.save();
+  res.status(201).send(item);
+});

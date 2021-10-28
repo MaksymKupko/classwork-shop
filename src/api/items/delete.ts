@@ -1,7 +1,6 @@
+import {Request,Response} from 'express';
 
-  import {Request,Response} from "express";
-
-  export const deleteItem = async (req:Request, res:Response) => {
-    res.sendStatus(200);
+export const deleteItems = async (req:Request, res:Response) => {
+  res.sendStatus(200);
   };
-  
+	

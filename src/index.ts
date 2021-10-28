@@ -1,9 +1,11 @@
 import express, { Request, Response } from "express";
 import { config } from "dotenv";
 import { registerRouters } from "./api";
-import { read } from "./data/mocks";
+import { createConnection } from "typeorm";
+import "reflect-metadata";
+import { createConfig } from "./config";
 
-config();
+createConfig();
 
 const port = process.env.APP_PORT || 3030;
 
@@ -16,4 +18,4 @@ app.get("/", async (req: Request, res: Response) => {
   res.send("Im alive!");
 });
 
-read().then(() => app.listen(port, () => console.log(`Started on port ${port}`)));
+createConnection().then(() => app.listen(port, () => console.log("Ololo")));

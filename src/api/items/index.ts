@@ -1,19 +1,17 @@
-import { Router } from "express";
-import { getItem, getItemById, getSellerByItemId } from "./get";
-import { postItem } from "./post";
-import { patchItem } from "./patch";
-import { deleteItem } from "./delete";
-import { putItem } from "./put";
+import { Router } from 'express';
+import { getItems } from './get';
+import { postItems } from './post';
+import { putItems } from './put';
+import { deleteItems } from './delete';
+import { patchItems } from './patch';
 
 const router = Router();
 
-router.get("/", getItem);
-router.post("/", postItem);
-router.patch("/", patchItem);
-router.delete("/", deleteItem);
-router.put("/", putItem);
+router.get('/', getItems);
+router.post('/', postItems);
+router.put('/', putItems);
+router.delete('/', deleteItems);
+router.patch('/', patchItems);
 
-router.get("/:id", getItemById);
-
-router.get("/:id/seller", getSellerByItemId);
-export default router;
+export default router; 
+		

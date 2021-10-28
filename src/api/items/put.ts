@@ -1,7 +1,6 @@
+import {Request,Response} from 'express';
 
-  import {Request,Response} from "express";
-
-  export const putItem = async (req:Request, res:Response) => {
-    res.sendStatus(200);
+export const putItems = async (req:Request, res:Response) => {
+  res.sendStatus(200);
   };
-  
+	
