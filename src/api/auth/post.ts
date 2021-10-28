@@ -1,19 +1,31 @@
 import { Request, Response } from "express";
-import { pick } from "lodash";
+import { pick, assign } from "lodash";
 import { UserEntity } from "../../db/entities/user.entity";
-
-export const registration = async (req: Request, res: Response) => {
-  await UserEntity.insert(pick(req.body, "login", "password", "role"));
-  return res.status(201).send();
-};
+import { HttpError, wrapper } from "../../tools/wrapper.helpers";
+import JwtService from "../../services/jwt.service";
 
 export const login = async (req: Request, res: Response) => {
-  const { login, password } = pick(req.body, "password", "login");
-  const user = await UserEntity.findOne({ login });
+  const { password, login } = pick(req.body, "password", "login");
+  const user = await UserEntity.findOne({ login }, { select: ["password", "id", "role", "login"] });
 
-  if (!user || user.password !== password) {
-    res.status(400).send("I dont know you bro");
+  if (!user || !user.verifyPassword(password)) {
+    return res.status(400).send("I dont know you bro");
   }
-
-  res.send("Loged in sucsufficient");
+  const token = JwtService.encode(user);
+  return res.send({ token });
 };
+
+export const registration = wrapper(async (req: Request, res: Response) => {
+  const data = pick(req.body, "login", "password", "role");
+  const isLoginInUse = !!(await UserEntity.findOne({ login: data.login }));
+  if (isLoginInUse) {
+    throw new HttpError("There is such a user");
+  }
+  const user = new UserEntity();
+  assign(user, data);
+  await user.save();
+
+  res.status(201).send(`User with id ${user.id} created`);
+
+  res.sendStatus(201);
+});

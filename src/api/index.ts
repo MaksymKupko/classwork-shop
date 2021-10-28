@@ -1,11 +1,20 @@
-import { Express, json } from "express";
+import { Express, json, Request, Response } from "express";
 import authRouter from "./auth/index";
-import purchasesRouter from "./purchases/index";
-import pursRouter from "./purs/index";
+import { HttpError } from "../tools/wrapper.helpers";
+import { authMiddleware } from "./auth/auth.middleware";
+import { IRequest } from "../tools/types";
+import itemsRouter from "./items/index";
 
 export const registerRouters = (app: Express) => {
   app.use(json());
   app.use("/auth", authRouter);
-  app.use("/purchases", purchasesRouter)";
-  app.use("/purs", pursRouter)";
+  app.use("/", authMiddleware);
+  app.use("/items", itemsRouter);
+  app.use("/whoami", (req: IRequest, res: Response) => {
+    return res.send(req.user);
+  });
+
+  app.use("/", (err: HttpError, req: Request, res: Response, next: Function) => {
+    res.status(err?.statusCode || 400).send(err?.message);
+  });
 };

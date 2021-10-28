@@ -1,9 +1,10 @@
 import { assign } from "lodash";
-import { Column, Entity, OneToMany } from "typeorm";
+import { BeforeInsert, Column, Entity, OneToMany } from "typeorm";
 import { UserRoleEnum } from "../../enums/user-role.enum";
 import { Base } from "./base.entity";
 import { ItemEntity } from "./item.entity";
 import { PurchaseEntity } from "./purchase.entity";
+import crypto from "crypto";
 
 @Entity({ name: "users" })
 export class UserEntity extends Base {
@@ -20,7 +21,7 @@ export class UserEntity extends Base {
   })
   public login: string;
 
-  @Column()
+  @Column({ select: false })
   public password: string;
 
   @Column({
@@ -30,8 +31,23 @@ export class UserEntity extends Base {
   public balance: number;
 
   @OneToMany(() => ItemEntity, item => item.seller)
-  public items: ItemEntity[];
+  public items: Promise<ItemEntity[]>;
 
   @OneToMany(() => PurchaseEntity, purchase => purchase.customer)
   public purchases: PurchaseEntity[];
+
+  @BeforeInsert()
+  encryptPassword() {
+    this.password = this.getPasswordHash(this.password);
+  }
+
+  verifyPassword(password: string) {
+    const passwordHash = this.getPasswordHash(password);
+
+    return this.password === passwordHash;
+  }
+
+  getPasswordHash(password: string) {
+    return crypto.createHash("sha256").update(password, "binary").digest("base64");
+  }
 }

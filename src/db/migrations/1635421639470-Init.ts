@@ -1,12 +1,12 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class Init1634844177966 implements MigrationInterface {
-    name = 'Init1634844177966'
+export class Init1635421639470 implements MigrationInterface {
+    name = 'Init1635421639470'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "purchases" ("id" SERIAL NOT NULL, "createDate" TIMESTAMP NOT NULL DEFAULT now(), "updateDate" TIMESTAMP NOT NULL DEFAULT now(), "deleteDate" TIMESTAMP, "status" "public"."purchases_status_enum" NOT NULL DEFAULT 'PENDING', "itemId" integer, "customerId" integer, CONSTRAINT "PK_1d55032f37a34c6eceacbbca6b8" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "users" ("id" SERIAL NOT NULL, "createDate" TIMESTAMP NOT NULL DEFAULT now(), "updateDate" TIMESTAMP NOT NULL DEFAULT now(), "deleteDate" TIMESTAMP, "role" "public"."users_role_enum" NOT NULL DEFAULT 'CUSTOMER', "login" text NOT NULL, "password" character varying NOT NULL, "balance" numeric NOT NULL DEFAULT '300', CONSTRAINT "UQ_2d443082eccd5198f95f2a36e2c" UNIQUE ("login"), CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id"))`);
-        await queryRunner.query(`CREATE TABLE "items" ("id" SERIAL NOT NULL, "createDate" TIMESTAMP NOT NULL DEFAULT now(), "updateDate" TIMESTAMP NOT NULL DEFAULT now(), "deleteDate" TIMESTAMP, "price" integer NOT NULL, "title" character varying NOT NULL, "quantity" integer NOT NULL, "sellerId" integer NOT NULL, CONSTRAINT "PK_ba5885359424c15ca6b9e79bcf6" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "items" ("id" SERIAL NOT NULL, "createDate" TIMESTAMP NOT NULL DEFAULT now(), "updateDate" TIMESTAMP NOT NULL DEFAULT now(), "deleteDate" TIMESTAMP, "price" integer NOT NULL, "title" character varying NOT NULL, "quantity" integer NOT NULL, "sellerId" integer, CONSTRAINT "PK_ba5885359424c15ca6b9e79bcf6" PRIMARY KEY ("id"))`);
         await queryRunner.query(`ALTER TABLE "purchases" ADD CONSTRAINT "FK_a0fc991b61b29f2d0617ae41371" FOREIGN KEY ("itemId") REFERENCES "items"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "purchases" ADD CONSTRAINT "FK_04fd2f77d76adcfe5c78d6deb87" FOREIGN KEY ("customerId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "items" ADD CONSTRAINT "FK_63e65ad885f4161dabb35d90e09" FOREIGN KEY ("sellerId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
