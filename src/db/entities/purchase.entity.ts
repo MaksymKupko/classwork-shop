@@ -7,10 +7,6 @@ import { UserEntity } from "./user.entity";
 
 @Entity({ name: "purchases" })
 export class PurchaseEntity extends Base {
-  public customerId: string;
-
-  public itemId: string;
-
   @Column({
     type: "enum",
     enum: PurchaseStatusEnum,
@@ -18,9 +14,18 @@ export class PurchaseEntity extends Base {
   })
   public status: PurchaseStatusEnum;
 
+  @Column({ default: 1 })
+  public quantity: number;
+
+  @Column()
+  public customerId: number;
+
+  @Column()
+  public itemId: number;
+
   @ManyToOne(() => ItemEntity)
   public item: ItemEntity;
 
   @ManyToOne(() => UserEntity)
-  public customer: UserEntity;
+  public customer: Promise<UserEntity>;
 }

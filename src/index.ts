@@ -18,4 +18,4 @@ app.get("/", async (req: Request, res: Response) => {
   res.send("Im alive!");
 });
 
-createConnection().then(() => app.listen(port, () => console.log("Ololo")));
+createConnection().then(() => app.listen(port, () => console.log("Server is working !!!")));

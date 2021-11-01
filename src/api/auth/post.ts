@@ -26,6 +26,4 @@ export const registration = wrapper(async (req: Request, res: Response) => {
   await user.save();
 
   res.status(201).send(`User with id ${user.id} created`);
-
-  res.sendStatus(201);
 });

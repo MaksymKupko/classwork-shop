@@ -19,3 +19,14 @@ export function wrapper(func: Function) {
     }
   };
 }
+
+export function middlewareWrapper(func: Function) {
+  return async function (req: Request, res: Response, next: Function) {
+    try {
+      await func.apply(this, arguments);
+      next();
+    } catch (error) {
+      next(error);
+    }
+  };
+}

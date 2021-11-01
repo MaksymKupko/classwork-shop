@@ -1,6 +1,7 @@
-import {Request,Response} from 'express';
+import { Response } from "express";
+import { IRequest } from "../../tools/types";
+import { wrapper } from "../../tools/wrapper.helpers";
 
-export const patchItems = async (req:Request, res:Response) => {
-  res.sendStatus(200);
-  };
-	
+export const patchItems = wrapper(async (req: IRequest, res: Response) => {
+  const id = req.params.id;
+});

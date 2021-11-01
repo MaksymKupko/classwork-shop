@@ -1,20 +1,14 @@
 import { Response } from "express";
 import { assign, pick } from "lodash";
 import { ItemEntity } from "../../db/entities/item.entity";
-import { UserRoleEnum } from "../../enums/user-role.enum";
 import { IRequest } from "../../tools/types";
-import { HttpError, wrapper } from "../../tools/wrapper.helpers";
+import { wrapper } from "../../tools/wrapper.helpers";
 
 export const postItems = wrapper(async (req: IRequest, res: Response) => {
   const user = req.user;
-
-  if (user.role !== UserRoleEnum.SELLER) {
-    throw new HttpError(`This action is not permitted for role ${user.role}`);
-  }
-
   const item = new ItemEntity();
   assign(item, pick(req.body, "price", "quantity", "title"));
-  item.seller = user;
+  item.sellerId = user.id;
   await item.save();
   res.status(201).send(item);
 });
