@@ -7,7 +7,7 @@ import { createConfig } from "./config";
 
 createConfig();
 
-const port = process.env.APP_PORT || 3030;
+const port = process.env.PORT || 3030;
 
 const app = express();
 
