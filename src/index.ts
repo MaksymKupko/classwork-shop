@@ -14,7 +14,7 @@ const app = express();
 app.get("/", async (req: Request, res: Response) => {
   console.log(req.url);
 
-  res.send("Im alive!");
+  res.send(`Im alive! ${port}`);
 });
 
 registerRouters(app);
