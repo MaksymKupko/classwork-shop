@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { config } from "dotenv";
 import { registerRouters } from "./api";
-import { createConnection, getConnectionOptions } from "typeorm";
+import { createConnection } from "typeorm";
 import "reflect-metadata";
 import { createConfig } from "./config";
 
@@ -19,11 +19,11 @@ app.get("/", async (req: Request, res: Response) => {
 
 registerRouters(app);
 
-(async function () {
-  // const connectionOptions = await getConnectionOptions();
-  // Object.assign(connectionOptions, {
-  //   ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
-  // });
-  createConnection().then(() => app.listen(port, () => console.log("Server is working !!!")));
-})();
+// (async function () {
+// const connectionOptions = await getConnectionOptions();
+// Object.assign(connectionOptions, {
+//   ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
+// });
+createConnection().then(() => app.listen(port, () => console.log("Server is working !!!")));
+// })();
 // app.listen(port, () => console.log("Server is working !!!"));
