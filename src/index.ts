@@ -19,5 +19,5 @@ app.get("/", async (req: Request, res: Response) => {
 
 registerRouters(app);
 
-// createConnection().then(() => app.listen(port, () => console.log("Server is working !!!")));
-app.listen(port, () => console.log("Server is working !!!"));
+createConnection().then(() => app.listen(port, () => console.log("Server is working !!!")));
+// app.listen(port, () => console.log("Server is working !!!"));
