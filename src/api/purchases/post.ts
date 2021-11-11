@@ -22,7 +22,7 @@ export const postPurchases = wrapper(async (req: IRequest, res: Response) => {
   const purchase = new PurchaseEntity();
   purchase.quantity = count;
   purchase.customerId = user.id;
-  purchase.item = item;
+  purchase.itemId = itemId;
 
   await purchase.save();
 

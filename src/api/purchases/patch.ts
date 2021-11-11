@@ -4,19 +4,39 @@ import { PurchaseStatusEnum } from "../../enums/purchase-status.enum";
 import { IEntityRequest } from "../../tools/types";
 import { HttpError, middlewareWrapper, wrapper } from "../../tools/wrapper.helpers";
 
-export const patchPurchases = middlewareWrapper(async (req: IEntityRequest<PurchaseEntity>, res: Response) => {
+export const patchPurchases = wrapper(async (req: IEntityRequest<PurchaseEntity>, res: Response) => {
+  const { status } = req.body;
+
+  if (!status) {
+    throw new HttpError("Please, provide status to change");
+  }
+
+  const availableStatuses = Object.values(PurchaseStatusEnum);
+
+  if (!availableStatuses.includes(status)) {
+    throw new HttpError(
+      `Please, provide valid status to change. Status have to be one of the next: ${availableStatuses.join(", ")}`
+    );
+  }
+
   const purchase = req.entity;
-  const newStatus: PurchaseStatusEnum = req.body.status;
 
   if (purchase.customerId !== req.user.id) {
-    throw new HttpError(`You are not allowed to read or change this purchase`, 401);
-  }
-  if (!newStatus) {
-    throw new HttpError(`You didn't send new status of purchase`);
+    throw new HttpError("Go fuck yourself");
   }
 
-  purchase.status = newStatus;
+  if (purchase.status === PurchaseStatusEnum.CANCELLED) {
+    throw new HttpError("Cannot change status of cancelled order. Please create new.");
+  }
+
+  if (status === PurchaseStatusEnum.CANCELLED) {
+    const item = await purchase.item;
+    item.quantity += purchase.quantity;
+    await item.save();
+  }
+
+  purchase.status = status;
   await purchase.save();
 
-  return res.status(200).send(`Purchase status was successfully updated`);
+  return res.status(200).send(`Purchase #${purchase.id} status has been changed to ${status}`);
 });

@@ -6,11 +6,13 @@ import { deleteItems } from "./delete";
 import { patchItems } from "./patch";
 import { authByRoleMiddleware } from "../auth/auth.middleware";
 import { UserRoleEnum } from "../../enums/user-role.enum";
+import { validationMiddleware } from "../../tools/validate-body.middleware";
+import { PostItemRequest } from "./requests/post-item.request";
 
 const router = Router();
 
 router.get("/", getItems);
-router.post("/", authByRoleMiddleware(UserRoleEnum.SELLER), postItems);
+router.post("/", validationMiddleware(PostItemRequest), authByRoleMiddleware(UserRoleEnum.SELLER), postItems);
 router.put("/", putItems);
 router.delete("/", deleteItems);
 router.patch("/:id", authByRoleMiddleware(UserRoleEnum.SELLER), patchItems);

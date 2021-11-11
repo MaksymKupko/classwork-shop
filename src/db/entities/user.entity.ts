@@ -5,6 +5,7 @@ import { Base } from "./base.entity";
 import { ItemEntity } from "./item.entity";
 import { PurchaseEntity } from "./purchase.entity";
 import crypto from "crypto";
+import { Length, Min } from "class-validator";
 
 @Entity({ name: "users" })
 export class UserEntity extends Base {
@@ -34,7 +35,7 @@ export class UserEntity extends Base {
   public items: Promise<ItemEntity[]>;
 
   @OneToMany(() => PurchaseEntity, purchase => purchase.customer)
-  public purchases: PurchaseEntity[];
+  public purchases: Promise<PurchaseEntity[]>;
 
   @BeforeInsert()
   encryptPassword() {

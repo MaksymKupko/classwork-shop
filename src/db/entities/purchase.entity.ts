@@ -24,7 +24,7 @@ export class PurchaseEntity extends Base {
   public itemId: number;
 
   @ManyToOne(() => ItemEntity)
-  public item: ItemEntity;
+  public item: Promise<ItemEntity>;
 
   @ManyToOne(() => UserEntity)
   public customer: Promise<UserEntity>;
