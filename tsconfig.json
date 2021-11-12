@@ -9,9 +9,7 @@
     "outDir": "./dist",
     "incremental": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "moduleResolution": "node"
+    "emitDecoratorMetadata": true
   },
-  "exclude": ["node_modules", "dist"],
-  "include": ["src/**/*.ts"]
+  "exclude": ["node_modules", "dist"]
 }
