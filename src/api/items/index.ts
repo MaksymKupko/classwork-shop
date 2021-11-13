@@ -12,7 +12,7 @@ import { PostItemRequest } from "./requests/post-item.request";
 const router = Router();
 
 router.get("/", getItems);
-router.post("/", validationMiddleware(PostItemRequest), authByRoleMiddleware(UserRoleEnum.SELLER), postItems);
+router.post("/", authByRoleMiddleware(UserRoleEnum.SELLER), validationMiddleware(PostItemRequest), postItems);
 router.put("/", putItems);
 router.delete("/", deleteItems);
 router.patch("/:id", authByRoleMiddleware(UserRoleEnum.SELLER), patchItems);
