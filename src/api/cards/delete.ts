@@ -4,10 +4,11 @@ import { IRequest } from "../../tools/types";
 import { HttpError, wrapper } from "../../tools/wrapper.helpers";
 
 export const deleteCards = wrapper(async (req: IRequest, res: Response) => {
+  const userId = req.user.id;
   const number = req.params.number;
-  const card = await CardEntity.findOne({ where: { number } });
+  const card = await CardEntity.findOne({ where: { number, userId } });
 
-  if (!card || card.userId !== req.user.id) {
+  if (!card) {
     throw new HttpError("You don't have such a card");
   }
 
