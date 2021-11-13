@@ -20,5 +20,5 @@ export const postCards = wrapper(async (req: IRequest, res: Response) => {
   entity.userId = req.user.id;
   await entity.save();
 
-  res.status(200).send(entity);
+  res.status(201).send(entity);
 });
