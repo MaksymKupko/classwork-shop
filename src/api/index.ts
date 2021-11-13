@@ -9,6 +9,7 @@ import { omit } from "lodash";
 import accountsRouter from "./accounts/index";
 import path from "path";
 import fileUpload, { UploadedFile } from "express-fileupload";
+import cardsRouter from "./cards/index";
 
 export const registerRouters = (app: Express) => {
   app.use(json());
@@ -38,6 +39,7 @@ export const registerRouters = (app: Express) => {
     return res.send(req.user);
   });
   app.use("/accounts", accountsRouter);
+  app.use("/cards", cardsRouter);
 
   app.use("/", (err: HttpError, req: Request, res: Response, next: Function) => {
     if (err instanceof HttpValidationError) {
