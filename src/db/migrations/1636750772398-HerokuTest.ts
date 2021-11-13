@@ -1,7 +1,7 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class HerokuTest1636709789636 implements MigrationInterface {
-    name = 'HerokuTest1636709789636'
+export class HerokuTest1636750772398 implements MigrationInterface {
+    name = 'HerokuTest1636750772398'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TYPE "public"."purchases_status_enum" AS ENUM('PENDING', 'FULFILLED', 'CANCELLED')`);

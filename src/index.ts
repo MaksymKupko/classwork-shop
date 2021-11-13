@@ -19,11 +19,4 @@ app.get("/", async (req: Request, res: Response) => {
 
 registerRouters(app);
 
-// (async function () {
-// const connectionOptions = await getConnectionOptions();
-// Object.assign(connectionOptions, {
-//   ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
-// });
 createConnection().then(() => app.listen(port, () => console.log("Server is working !!!")));
-// })();
-// app.listen(port, () => console.log("Server is working !!!"));
