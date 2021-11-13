@@ -1,6 +1,6 @@
 import { Express, json, Request, Response } from "express";
 import authRouter from "./auth/index";
-import { HttpError } from "../tools/wrapper.helpers";
+import { HttpError, HttpValidationError } from "../tools/wrapper.helpers";
 import { authMiddleware } from "./auth/auth.middleware";
 import { IRequest } from "../tools/types";
 import itemsRouter from "./items/index";
@@ -40,6 +40,9 @@ export const registerRouters = (app: Express) => {
   app.use("/accounts", accountsRouter);
 
   app.use("/", (err: HttpError, req: Request, res: Response, next: Function) => {
-    res.status(err?.statusCode || 400).send(err?.message || omit(err, "statusCode"));
+    if (err instanceof HttpValidationError) {
+      return res.status(err?.statusCode || 400).json(err.errors);
+    }
+    return res.status(err?.statusCode || 400).send(err?.message);
   });
 };

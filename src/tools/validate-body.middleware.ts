@@ -13,7 +13,7 @@ export const validationMiddleware = <T extends typeof BaseRequest>(entity: T) =>
 
     assign(newEntity, body);
 
-    await validateOrReject(newEntity).catch(errs => {
+    await validateOrReject(newEntity, { validationError: { target: false } }).catch(errs => {
       throw new HttpValidationError(errs);
     });
 
