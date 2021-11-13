@@ -6,7 +6,7 @@ import { deleteItems } from "./delete";
 import { patchItems } from "./patch";
 import { authByRoleMiddleware } from "../auth/auth.middleware";
 import { UserRoleEnum } from "../../enums/user-role.enum";
-import { validationMiddleware } from "../../tools/validate-body.middleware";
+import { validationMiddleware } from "../../tools/validation.middleware";
 import { PostItemRequest } from "./requests/post-item.request";
 
 const router = Router();

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { validationMiddleware } from "../../tools/validate-body.middleware";
+import { validationMiddleware } from "../../tools/validation.middleware";
 import { login, registration } from "./post";
 import { RegistrationRequest } from "./requests/registration.request";
 
