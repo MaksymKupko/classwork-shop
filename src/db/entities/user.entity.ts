@@ -39,7 +39,7 @@ export class UserEntity extends Base {
   public purchases: Promise<PurchaseEntity[]>;
 
   @OneToMany(() => CardEntity, card => card.user)
-  public cards: CardEntity[];
+  public cards: Promise<CardEntity[]>;
 
   @BeforeInsert()
   encryptPassword() {
