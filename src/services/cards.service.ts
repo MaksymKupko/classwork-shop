@@ -33,8 +33,7 @@ export class CardsService {
         type,
       };
     } catch (error) {
-      console.log(error);
-      throw new Error("Card not found or wrong details");
+      throw new Error("Card not found on Antosha swagger or wrong details");
     }
   }
 
