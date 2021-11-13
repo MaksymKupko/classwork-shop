@@ -9,10 +9,10 @@ export class CardEntity extends Base {
   public type: CardTypeEnum;
 
   @Column()
-  public number: number;
+  public number: string;
 
   @Column()
-  public expire: string;
+  public expired: string;
 
   @Column()
   public cvv: number;
