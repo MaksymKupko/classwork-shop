@@ -1,7 +1,6 @@
 import { Router } from "express";
-import { UserEntity } from "../../db/entities/user.entity";
 import { validationMiddleware } from "../../tools/validate-body.middleware";
-import { registration, login } from "./post";
+import { login, registration } from "./post";
 import { RegistrationRequest } from "./requests/registration.request";
 
 const router = Router();
