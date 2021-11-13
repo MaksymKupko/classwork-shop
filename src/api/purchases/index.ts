@@ -10,13 +10,14 @@ import { patchPurchases } from "./patch";
 import { postPurchases } from "./post";
 import { putPurchases } from "./put";
 import { PatchPurchaseRequest } from "./requests/patch-purchase.request";
+import { PostPurchaseRequest } from "./requests/post-purchase.request";
 
 const router = Router();
 const findPurchaseByIdMiddleware = findItemByIdMiddleware(PurchaseEntity);
 
 router.get("/", authByRoleMiddleware(UserRoleEnum.CUSTOMER), getPurchases);
 router.get("/:id", authByRoleMiddleware(UserRoleEnum.CUSTOMER), findPurchaseByIdMiddleware, getPurchaseById);
-router.post("/", authByRoleMiddleware(UserRoleEnum.CUSTOMER), postPurchases);
+router.post("/", authByRoleMiddleware(UserRoleEnum.CUSTOMER), validationMiddleware(PostPurchaseRequest), postPurchases);
 router.put("/", putPurchases);
 router.delete("/", deletePurchases);
 router.patch(
