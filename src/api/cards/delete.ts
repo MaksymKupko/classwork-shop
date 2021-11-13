@@ -1,6 +1,17 @@
-import {Request,Response} from 'express';
+import { Request, Response } from "express";
+import { CardEntity } from "../../db/entities/card.entity";
+import { IRequest } from "../../tools/types";
+import { HttpError, wrapper } from "../../tools/wrapper.helpers";
 
-export const deleteCards = async (req:Request, res:Response) => {
-  res.sendStatus(200);
-  };
-	
+export const deleteCards = wrapper(async (req: IRequest, res: Response) => {
+  const number = req.params.number;
+  const card = await CardEntity.findOne({ where: { number } });
+
+  if (!card || card.userId !== req.user.id) {
+    throw new HttpError("You don't have such a card");
+  }
+
+  await card.softRemove();
+
+  return res.sendStatus(200);
+});
