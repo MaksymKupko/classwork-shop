@@ -6,12 +6,12 @@ import { IRequest } from "./types";
 import { HttpValidationError, wrapper } from "./wrapper.helpers";
 import { BaseRequest } from "../api/common/base.request";
 
-export const validationMiddleware = <T extends typeof BaseRequest>(entity: T) =>
+export const validationMiddleware = <T extends typeof BaseRequest>(entity: T, target: "body" | "params" = "body") =>
   wrapper(async (req: IRequest, res: Response, next) => {
-    const body = req.body as unknown as T;
-    const newEntity = new entity(body);
-
-    assign(newEntity, body);
+    const validationData: T = req[target];
+    // const validationData = req.body as unknown as T;
+    // TODO Ask Anton about the difference above
+    const newEntity = new entity(validationData);
 
     await validateOrReject(newEntity, { validationError: { target: false } }).catch(errs => {
       throw new HttpValidationError(errs);
