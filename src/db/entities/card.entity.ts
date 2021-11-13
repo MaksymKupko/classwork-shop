@@ -17,6 +17,6 @@ export class CardEntity extends Base {
   @Column()
   public cvv: number;
 
-  @ManyToOne(() => UserEntity)
+  @ManyToOne(() => UserEntity, { nullable: false })
   public user: UserEntity;
 }
