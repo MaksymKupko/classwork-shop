@@ -5,7 +5,7 @@ import { CardTypeEnum } from "../enums/card-type.enum";
 import { TCardReturn, TCardTransactionParams, TCardTransactionResponse } from "../tools/types";
 
 export class CardsService {
-  api: AxiosInstance;
+  private api: AxiosInstance;
 
   constructor() {
     this.api = axios.create({ baseURL: EnvConfig.CARDS_SERVICE_URL });
@@ -17,7 +17,7 @@ export class CardsService {
         params: cardParams,
       });
       const balance = response.data.balance;
-      const type = this.getCardType(cardParams.number) as CardTypeEnum;
+      const type = this.getCardType(cardParams.number);
 
       return {
         ...cardParams,
@@ -48,9 +48,9 @@ export class CardsService {
     }
   }
 
-  public getCardType(cardNumber: string) {
+  private getCardType(cardNumber: string): CardTypeEnum {
     const cardType = cardTypeLib(cardNumber);
-    return cardType[0].type.toUpperCase();
+    return cardType[0].type.toUpperCase() as CardTypeEnum;
   }
 }
 
