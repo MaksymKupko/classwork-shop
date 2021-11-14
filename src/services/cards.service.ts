@@ -46,6 +46,15 @@ export class CardsService {
     }
   }
 
+  public async depositToCard(number: Pick<TCard, "number">): Promise<boolean> {
+    try {
+      await this.api.patch<number>("/deposit", {}, { params: number });
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   public getCardType(cardNumber: string) {
     const cardType = cardTypeLib(cardNumber);
     return cardType[0].type.toUpperCase();
