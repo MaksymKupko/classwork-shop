@@ -1,12 +1,9 @@
 import axios, { AxiosInstance } from "axios";
 import cardTypeLib from "credit-card-type";
 import { EnvConfig } from "../config";
-import { CardEntity } from "../db/entities/card.entity";
 import { CardTypeEnum } from "../enums/card-type.enum";
+import { TCardReturn, TCardTransactionParams, TCardTransactionResponse } from "../tools/types";
 
-export type TCardTransactionParams = Pick<CardEntity, "number" | "cvv" | "expired">;
-export type TCardTransactionResponse = { balance: number };
-export type TCardReturn = TCardTransactionParams & TCardTransactionResponse & { type: string };
 export class CardsService {
   api: AxiosInstance;
 

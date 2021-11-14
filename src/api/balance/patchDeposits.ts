@@ -1,8 +1,8 @@
 import { Response } from "express";
 import { pick } from "lodash";
 import { CardEntity } from "../../db/entities/card.entity";
-import CardsService, { TCardTransactionParams } from "../../services/cards.service";
-import { IEntityRequest } from "../../tools/types";
+import CardsService from "../../services/cards.service";
+import { IEntityRequest, TCardTransactionParams } from "../../tools/types";
 import { HttpError } from "../../tools/wrapper.helpers";
 
 export const patchDeposits = async (req: IEntityRequest<CardEntity>, res: Response) => {
