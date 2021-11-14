@@ -1,8 +1,8 @@
-import { IsInt, IsPositive } from "class-validator";
+import { IsNumber, IsPositive } from "class-validator";
 import { BaseRequest } from "../../common/base.request";
 
 export class PatchWithdrawalsRequest extends BaseRequest {
-  @IsInt()
+  @IsNumber()
   @IsPositive()
   sum: number;
 }
