@@ -1,15 +1,15 @@
 import { Express, json, Request, Response } from "express";
-import authRouter from "./auth/index";
-import { HttpError, HttpValidationError } from "../tools/wrapper.helpers";
-import { authMiddleware } from "./auth/auth.middleware";
+import fileUpload, { UploadedFile } from "express-fileupload";
+import path from "path";
 import { IRequest } from "../tools/types";
+import { HttpError, HttpValidationError } from "../tools/wrapper.helpers";
+import accountsRouter from "./accounts/index";
+import { authMiddleware } from "./auth/auth.middleware";
+import authRouter from "./auth/index";
+import cardsRouter from "./cards/index";
+import depositsRouter from "./deposits/index";
 import itemsRouter from "./items/index";
 import purchasesRouter from "./purchases/index";
-import { omit } from "lodash";
-import accountsRouter from "./accounts/index";
-import path from "path";
-import fileUpload, { UploadedFile } from "express-fileupload";
-import cardsRouter from "./cards/index";
 import withdrawalsRouter from "./withdrawals/index";
 
 export const registerRouters = (app: Express) => {
@@ -41,6 +41,7 @@ export const registerRouters = (app: Express) => {
   });
   app.use("/accounts", accountsRouter);
   app.use("/cards", cardsRouter);
+  app.use("/deposits", depositsRouter);
   app.use("/withdrawals", withdrawalsRouter);
 
   app.use("/", (err: HttpError, req: Request, res: Response, next: Function) => {
