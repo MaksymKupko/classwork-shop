@@ -10,7 +10,7 @@ export type TCard = {
   type: string;
 };
 
-export type TGetCard = Omit<TCard, "type" | "balance">;
+export type TCardParams = Omit<TCard, "type" | "balance">;
 
 export class CardsService {
   api: AxiosInstance;
@@ -19,7 +19,7 @@ export class CardsService {
     this.api = axios.create({ baseURL: EnvConfig.CARDS_SERVICE_URL });
   }
 
-  public async getCard(card: TGetCard): Promise<TCard> {
+  public async getCard(card: TCardParams): Promise<TCard> {
     try {
       const response = await this.api.get<Pick<TCard, "balance">>("/balance", {
         params: card,
@@ -34,6 +34,15 @@ export class CardsService {
       };
     } catch (error) {
       throw new Error("Card not found on Antosha swagger or wrong details");
+    }
+  }
+
+  public async withdrawFromCard(card: TCardParams, sum: number): Promise<boolean> {
+    try {
+      await this.api.patch<Pick<TCard, "balance">>("/withdraw", { sum }, { params: card });
+      return true;
+    } catch (error) {
+      throw error;
     }
   }
 
