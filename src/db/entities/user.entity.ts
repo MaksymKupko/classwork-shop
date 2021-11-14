@@ -7,6 +7,7 @@ import { PurchaseEntity } from "./purchase.entity";
 import crypto from "crypto";
 import { Length, Min } from "class-validator";
 import { CardEntity } from "./card.entity";
+import { ColumnNumericTransformer } from "../transformers/column-numeric.transformer";
 
 @Entity({ name: "users" })
 export class UserEntity extends Base {
@@ -29,6 +30,7 @@ export class UserEntity extends Base {
   @Column({
     type: "decimal",
     default: 300,
+    transformer: new ColumnNumericTransformer(),
   })
   public balance: number;
 
