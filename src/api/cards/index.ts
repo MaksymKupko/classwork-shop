@@ -1,18 +1,19 @@
 import { Router } from "express";
+import { CardEntity } from "../../db/entities/card.entity";
+import { findItemByIdMiddleware } from "../../tools/find-item-by-id.middleware";
+import { validationMiddleware } from "../../tools/validation.middleware";
+import { deleteCards } from "./delete";
 import { getCards, getOneCard } from "./get";
+import { patchCards } from "./patch";
 import { postCards } from "./post";
 import { putCards } from "./put";
-import { deleteCards } from "./delete";
-import { patchCards } from "./patch";
-import { validationMiddleware } from "../../tools/validation.middleware";
-import { PostCardRequest } from "./request/post-card.request";
 import { DeleteCardRequest } from "./request/delete-card.request";
-import { GetCardRequest } from "./request/get-card.request";
+import { PostCardRequest } from "./request/post-card.request";
 
 const router = Router();
 
 router.get("/", getCards);
-router.get("/:number", validationMiddleware(GetCardRequest, "params"), getOneCard);
+router.get("/:id", findItemByIdMiddleware(CardEntity), getOneCard);
 router.post("/", validationMiddleware(PostCardRequest), postCards);
 router.put("/", putCards);
 router.delete("/:number", validationMiddleware(DeleteCardRequest, "params"), deleteCards);
