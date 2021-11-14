@@ -21,7 +21,7 @@ export const patchDeposits = async (req: IEntityRequest<CardEntity>, res: Respon
   }
 
   await cardService.withdrawFromCard(cardParams, sum);
-  user.balance = +user.balance + sum;
+  user.balance = user.balance + sum;
   await user.save();
 
   return res.status(200).send({ balance: user.balance });
