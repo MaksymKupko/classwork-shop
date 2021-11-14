@@ -5,7 +5,7 @@ import { UserEntity } from "./user.entity";
 
 @Entity({ name: "cards" })
 export class CardEntity extends Base {
-  @Column()
+  @Column({ type: "enum", enum: CardTypeEnum })
   public type: CardTypeEnum;
 
   @Column()
