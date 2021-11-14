@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { CardEntity } from "../../db/entities/card.entity";
 import CardsService from "../../services/cards.service";
 import { IEntityRequest } from "../../tools/types";
