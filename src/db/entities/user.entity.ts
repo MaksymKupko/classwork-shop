@@ -29,6 +29,7 @@ export class UserEntity extends Base {
 
   @Column({
     type: "decimal",
+    scale: 2,
     default: 300,
     transformer: new ColumnNumericTransformer(),
   })
