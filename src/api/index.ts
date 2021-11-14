@@ -7,10 +7,9 @@ import accountsRouter from "./accounts/index";
 import { authMiddleware } from "./auth/auth.middleware";
 import authRouter from "./auth/index";
 import cardsRouter from "./cards/index";
-import depositsRouter from "./deposits/index";
 import itemsRouter from "./items/index";
 import purchasesRouter from "./purchases/index";
-import withdrawalsRouter from "./withdrawals/index";
+import balanceRouter from "./balance/index";
 
 export const registerRouters = (app: Express) => {
   app.use(json());
@@ -41,8 +40,7 @@ export const registerRouters = (app: Express) => {
   });
   app.use("/accounts", accountsRouter);
   app.use("/cards", cardsRouter);
-  app.use("/deposits", depositsRouter);
-  app.use("/withdrawals", withdrawalsRouter);
+  app.use("/balance", balanceRouter);
 
   app.use("/", (err: HttpError, req: Request, res: Response, next: Function) => {
     if (err instanceof HttpValidationError) {
