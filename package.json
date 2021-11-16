@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts",
+    "dev": "npm run ormconfig:init && nodemon src/index.ts",
     "prebuild": "rimraf dist",
-    "postinstall": "tsc",
+    "postinstall": "tsc && npm run ormconfig:init",
     "deploy": "git add . && git commit -m Heroku && git push heroku master",
     "build": "tsc --build",
     "start": "node dist/index.js",
+    "ormconfig:init": "node --require ts-node/register src/db/ormconfig-init.ts",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
     "migrate:generate": "npm run typeorm migration:generate --",
     "migrate:run": "npm run typeorm migration:run --"
