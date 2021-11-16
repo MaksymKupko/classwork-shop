@@ -6,7 +6,7 @@ const initOrmConfig = async () => {
   config();
 
   const env = process.env.ENV;
-  const dir = env === "DEV" ? "src" : "dist/src";
+  const dir = env === "DEV" ? "src" : "dist";
 
   const opt = {
     type: "postgres",
