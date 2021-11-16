@@ -7,13 +7,15 @@ const initOrmConfig = async () => {
 
   const env = process.env.ENV;
   const dir = env === "DEV" ? "src" : "dist";
+  const ext = env === "DEV" ? "ts" : "js";
 
   const opt = {
     type: "postgres",
     url: process.env.DATABASE_URL,
-    entities: [`${dir}/**/entities/*.entity{.ts, .js}`],
-    migrations: [`${dir}/**/migrations/*.entity{.ts, .js}`],
+    entities: [`${dir}/**/entities/*.entity.${ext}`],
+    migrations: [`${dir}/**/migrations/*.entity.${ext}`],
     migrationsDir: `${dir}/**/migrations`,
+    extra: { ssl: { rejectUnauthorized: false } },
   };
   console.log(path.join(__dirname, "../../"));
   await writeFile(path.join(__dirname, "../../ormconfig.json"), JSON.stringify(opt, null, 4));
