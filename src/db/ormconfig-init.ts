@@ -10,7 +10,7 @@ const initOrmConfig = async () => {
 
   const opt = {
     type: "postgres",
-    url: process.env.POSTGRES_URL,
+    url: process.env.DATABASE_URL,
     entities: [`${dir}/**/entities/*.entity{.ts, .js}`],
     migrations: [`${dir}/**/migrations/*.entity{.ts, .js}`],
     migrationsDir: `${dir}/**/migrations`,
