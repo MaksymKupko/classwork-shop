@@ -13,8 +13,10 @@ const initOrmConfig = async () => {
     type: "postgres",
     url: process.env.DATABASE_URL,
     entities: [`${dir}/**/entities/*.entity.${ext}`],
-    migrations: [`${dir}/**/migrations/*.entity.${ext}`],
-    migrationsDir: `${dir}/**/migrations`,
+    migrations: [`${dir}/**/migrations/*.${ext}`],
+    cli: {
+      migrationsDir: `${dir}/db/migrations`,
+    },
     extra: { ssl: { rejectUnauthorized: false } },
   };
   console.log(path.join(__dirname, "../../"));
