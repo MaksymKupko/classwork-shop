@@ -5,9 +5,9 @@ import path from "path";
 const initOrmConfig = async () => {
   config();
 
-  const env = process.env.ENV;
-  const dir = env === "DEV" ? "src" : "dist";
-  const ext = env === "DEV" ? "ts" : "js";
+  const isDev = process.env.NODE_ENV === "development";
+  const dir = isDev ? "src" : "dist";
+  const ext = isDev ? "ts" : "js";
 
   const opt = {
     type: "postgres",
