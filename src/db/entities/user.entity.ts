@@ -31,7 +31,7 @@ export class UserEntity extends Base {
     type: "decimal",
     scale: 2,
     default: 300,
-    transformer: new ColumnNumericTransformer(),
+    transformer: new ColumnNumericTransformer(300),
   })
   public balance: number;
 

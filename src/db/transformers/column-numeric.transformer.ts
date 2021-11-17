@@ -1,11 +1,16 @@
 import { ValueTransformer } from "typeorm";
 
 export class ColumnNumericTransformer implements ValueTransformer {
-  to(data?: number | null): number | null {
+  defaultValue: number;
+
+  constructor(defaultValue: number) {
+    this.defaultValue = defaultValue;
+  }
+  to(data?: number | null): number {
     if (data !== undefined && data !== null) {
       return data;
     }
-    return null;
+    return this.defaultValue;
   }
 
   from(data?: string | null): number | null {
