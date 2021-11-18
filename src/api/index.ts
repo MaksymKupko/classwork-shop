@@ -10,9 +10,12 @@ import cardsRouter from "./cards/index";
 import itemsRouter from "./items/index";
 import purchasesRouter from "./purchases/index";
 import balanceRouter from "./balance/index";
+import swagger from "swagger-ui-express";
+import swagDoc from "../../swagger.json";
 
 export const registerRouters = (app: Express) => {
   app.use(json());
+  app.use("/api/docs", swagger.serve, swagger.setup(swagDoc));
   app.use("/auth", authRouter);
 
   const filePath = path.join(__dirname, "../db/files/");
