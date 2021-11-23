@@ -20,7 +20,7 @@ const initOrmConfig = async () => {
     extra: { ssl: { rejectUnauthorized: false } },
     synchronize: true,
   };
-  console.log(path.join(__dirname, "../../"));
+
   await writeFile(path.join(__dirname, "../../ormconfig.json"), JSON.stringify(opt, null, 4));
 };
 
