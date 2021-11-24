@@ -1,20 +1,19 @@
 import express, { Request, Response } from "express";
-import { config } from "dotenv";
-import { registerRouters } from "./api";
-import { createConnection } from "typeorm";
 import "reflect-metadata";
-import { createConfig } from "./config";
-
-createConfig();
-
-const port = process.env.PORT || 3030;
+import { createConnection } from "typeorm";
+import { registerRouters } from "./api";
+import { EnvConfig } from "./config";
 
 const app = express();
 
 app.get("/", async (req: Request, res: Response) => {
-  res.send(`Im alive! ${port}`);
+  // res.send(`Im alive! ${port}`);
+  res.redirect("/api/docs");
 });
 
 registerRouters(app);
 
-createConnection().then(() => app.listen(port, () => console.log("Server is working !!!")));
+createConnection().then(() => {
+  app.listen(EnvConfig.PORT, () => console.log(`Started on port ${EnvConfig.PORT}`));
+  console.log("Connected to DB!");
+});

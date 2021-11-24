@@ -1,1 +1,1 @@
-web: node dist/src/index.js 
+web: ENV=PROD PGSSLMODE=no-verify node dist/index.js

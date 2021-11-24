@@ -11,17 +11,17 @@ const initOrmConfig = async () => {
 
   const opt = {
     type: "postgres",
-    url: process.env.DATABASE_URL,
-    entities: [`${dir}/**/entities/*.entity.${ext}`],
-    migrations: [`${dir}/**/migrations/*.${ext}`],
+    url: isDev ? process.env.TYPEORM_URL : process.env.DATABASE_URL,
+    entities: [`${dir}/db/entities/*.entity.${ext}`],
+    migrations: [`${dir}/db/migrations/*.${ext}`],
     cli: {
       migrationsDir: `${dir}/db/migrations`,
     },
-    extra: { ssl: { rejectUnauthorized: false } },
+    // extra: { ssl: { rejectUnauthorized: false } },
     synchronize: true,
   };
 
-  await writeFile(path.join(__dirname, "../../ormconfig.json"), JSON.stringify(opt, null, 4));
+  await writeFile(path.resolve("ormconfig.json"), JSON.stringify(opt, null, 4));
 };
 
 initOrmConfig().then(() => console.log("ormconfig.json have been generated"));
