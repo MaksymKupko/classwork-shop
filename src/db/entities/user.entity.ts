@@ -4,6 +4,7 @@ import { UserRoleEnum } from "../../enums/user-role.enum";
 import { ColumnNumericTransformer } from "../transformers/column-numeric.transformer";
 import { Base } from "./base.entity";
 import { CardEntity } from "./card.entity";
+import { ChatMemberEntity } from "./chat-member.entity";
 import { ItemEntity } from "./item.entity";
 import { PurchaseEntity } from "./purchase.entity";
 
@@ -41,6 +42,9 @@ export class UserEntity extends Base {
 
   @OneToMany(() => CardEntity, card => card.user)
   public cards: Promise<CardEntity[]>;
+
+  @OneToMany(() => ChatMemberEntity, chatMember => chatMember.user)
+  public chatMember: Promise<ChatMemberEntity[]>;
 
   @BeforeInsert()
   encryptPassword() {
