@@ -1,4 +1,3 @@
-import { assign } from "lodash";
 import { Column, Entity, ManyToOne } from "typeorm";
 import { PurchaseStatusEnum } from "../../enums/purchase-status.enum";
 import { Base } from "./base.entity";

@@ -1,13 +1,11 @@
-import { assign } from "lodash";
+import crypto from "crypto";
 import { BeforeInsert, Column, Entity, OneToMany } from "typeorm";
 import { UserRoleEnum } from "../../enums/user-role.enum";
+import { ColumnNumericTransformer } from "../transformers/column-numeric.transformer";
 import { Base } from "./base.entity";
+import { CardEntity } from "./card.entity";
 import { ItemEntity } from "./item.entity";
 import { PurchaseEntity } from "./purchase.entity";
-import crypto from "crypto";
-import { Length, Min } from "class-validator";
-import { CardEntity } from "./card.entity";
-import { ColumnNumericTransformer } from "../transformers/column-numeric.transformer";
 
 @Entity({ name: "users" })
 export class UserEntity extends Base {

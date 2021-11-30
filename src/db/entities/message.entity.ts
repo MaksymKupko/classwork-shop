@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity, ManyToOne } from "typeorm";
 import { Base } from "./base.entity";
 import { ChatEntity } from "./chat.entity";
 import { UserEntity } from "./user.entity";
