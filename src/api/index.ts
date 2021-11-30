@@ -1,39 +1,22 @@
 import { Express, json, Request, Response } from "express";
-import fileUpload, { UploadedFile } from "express-fileupload";
-import path from "path";
+import { files } from "../tools/files";
+import { swagger } from "../tools/swagger";
 import { IRequest } from "../tools/types";
 import { HttpError, HttpValidationError } from "../tools/wrapper.helpers";
 import accountsRouter from "./accounts/index";
 import { authMiddleware } from "./auth/auth.middleware";
 import authRouter from "./auth/index";
+import balanceRouter from "./balance/index";
 import cardsRouter from "./cards/index";
 import itemsRouter from "./items/index";
 import purchasesRouter from "./purchases/index";
-import balanceRouter from "./balance/index";
-import swagger from "swagger-ui-express";
-import swagDoc from "../../swagger.json";
 
 export const registerRouters = (app: Express) => {
   app.use(json());
-  app.use("/api/docs", swagger.serve, swagger.setup(swagDoc));
+  app.use(swagger());
   app.use("/auth", authRouter);
 
-  const filePath = path.join(__dirname, "../db/files/");
-  app.use(fileUpload());
-
-  app.post("/upload", async (req, res) => {
-    const file = req.files.test as UploadedFile;
-    console.log(file);
-    await file.mv(filePath + file.name);
-    return res.send("Success");
-    // return res.download(filesPath + '1.jpg');
-  });
-
-  app.get("/download/:name", async (req, res) => {
-    const file = `${filePath}${req.params.name}`;
-
-    res.download(file);
-  });
+  app.use(files());
 
   app.use("/", authMiddleware);
   app.use("/items", itemsRouter);

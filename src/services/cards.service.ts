@@ -43,7 +43,6 @@ export class CardsService {
       await this.api.patch<TCardTransactionResponse>("/deposit", { sum }, { params: { number: cardNumber } });
       return true;
     } catch (error) {
-      console.log(error);
       throw new Error("Something went wrong during deposit to card");
     }
   }
