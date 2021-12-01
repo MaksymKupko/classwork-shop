@@ -1,20 +1,11 @@
 import { Router } from "express";
-import { getItems } from "./get";
-import { postItems } from "./post";
-import { putItems } from "./put";
-import { deleteItems } from "./delete";
-import { patchItems } from "./patch";
-import { authByRoleMiddleware } from "../auth/auth.middleware";
-import { UserRoleEnum } from "../../enums/user-role.enum";
-import { validationMiddleware } from "../../tools/validation.middleware";
-import { PostItemRequest } from "./requests/post-item.request";
+import { ItemEntity } from "../../db/entities/item.entity";
+import { findItemByIdMiddleware } from "../../tools/find-item-by-id.middleware";
+import { getItems, getItemById } from "./get";
 
 const router = Router();
 
 router.get("/", getItems);
-router.post("/", authByRoleMiddleware(UserRoleEnum.SELLER), validationMiddleware(PostItemRequest), postItems);
-router.put("/", putItems);
-router.delete("/", deleteItems);
-router.patch("/:id", authByRoleMiddleware(UserRoleEnum.SELLER), patchItems);
+router.get("/:id", findItemByIdMiddleware(ItemEntity), getItemById);
 
 export default router;

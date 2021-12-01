@@ -10,6 +10,7 @@ import balanceRouter from "./balance/index";
 import cardsRouter from "./cards/index";
 import itemsRouter from "./items/index";
 import purchasesRouter from "./purchases/index";
+import sellersRouter from "./sellers/index";
 
 export const registerRouters = (app: Express) => {
   app.use(json());
@@ -27,6 +28,7 @@ export const registerRouters = (app: Express) => {
   app.use("/accounts", accountsRouter);
   app.use("/cards", cardsRouter);
   app.use("/balance", balanceRouter);
+  app.use("/sellers", sellersRouter);
 
   app.use("/", (err: HttpError, req: Request, res: Response, next: Function) => {
     if (err instanceof HttpValidationError) {
