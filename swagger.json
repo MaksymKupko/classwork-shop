@@ -1,305 +1,755 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.0.0",
   "info": {
-    "title": "API Title",
+    "title": "shop classwork",
+    "contact": {},
     "version": "1.0"
   },
-  "servers": [{ "url": "https://api.server.test/v1" }],
+  "servers": [
+    {
+      "url": "https://shlyapaa.herokuapp.com",
+      "variables": {}
+    }
+  ],
   "paths": {
-    "/auth/login": {
-      "post": {
-        "tags": ["Auth"],
-        "description": "Auto generated using Swagger Inspector",
+    "/items": {
+      "get": {
+        "tags": ["items"],
+        "summary": "/items",
+        "operationId": "/items",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/sellers/items/{id}": {
+      "get": {
+        "tags": ["items"],
+        "summary": "/items/:id",
+        "operationId": "/items/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["sellers"],
+        "summary": "/sellers/items/:id",
+        "operationId": "/sellers/items/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
+          "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/auth_login_body"
+                "$ref": "#/components/schemas/sellersitemsidrequest"
               },
-              "examples": {
-                "0": {
-                  "value": "\n{\n      \"login\":\"2@123\",\n    \"password\":\"1\"\n}"
-                }
+              "example": {
+                "quantity": 30
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
-            "content": {
-              "application/json; charset=utf-8": {
-                "schema": {
-                  "type": "string"
-                },
-                "examples": {}
-              }
-            }
+            "description": "",
+            "headers": {}
           }
         },
-        "servers": [
-          {
-            "url": "https://shlyapaa.herokuapp.com"
-          }
-        ]
-      },
-      "servers": [
-        {
-          "url": "https://shlyapaa.herokuapp.com"
-        }
-      ]
+        "deprecated": false
+      }
     },
     "/auth/registration": {
       "post": {
-        "tags": ["Auth"],
-        "description": "Auto generated using Swagger Inspector",
+        "tags": ["auth"],
+        "summary": "/auth/registration",
+        "operationId": "/auth/registration",
+        "parameters": [],
         "requestBody": {
+          "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/auth_register_body"
+                "$ref": "#/components/schemas/authregistrationrequest"
               },
-              "examples": {
-                "0": {
-                  "value": "\n{\n      \"login\":\"2@123\",\n    \"password\":\"1\"\n, \"role\":\"SELLER\"}"
-                }
+              "example": {
+                "login": "seller2",
+                "password": "12345",
+                "role": "SELLER"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
-            "content": {
-              "application/json; charset=utf-8": {
-                "schema": {
-                  "type": "string"
-                },
-                "examples": {}
-              }
-            }
+            "description": "",
+            "headers": {}
           }
         },
-        "servers": [
-          {
-            "url": "https://shlyapaa.herokuapp.com"
-          }
-        ]
-      },
-      "servers": [
-        {
-          "url": "https://shlyapaa.herokuapp.com"
-        }
-      ]
+        "deprecated": false
+      }
     },
-    "/items": {
+    "/auth/login": {
       "post": {
-        "description": "Auto generated using Swagger Inspector",
+        "tags": ["auth"],
+        "summary": "/auth/login",
+        "operationId": "/auth/login",
+        "parameters": [],
         "requestBody": {
+          "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/items_body"
+                "$ref": "#/components/schemas/authloginrequest"
               },
-              "examples": {
-                "0": {
-                  "value": "\n{\n    \"title\":\"Sample product\",\n    \"price\":20,\n    \"quantity\":12\n}"
-                }
+              "example": {
+                "login": "seller1",
+                "password": "12345"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
-          "201": {
-            "description": "Auto generated using Swagger Inspector",
-            "content": {
-              "text/html; charset=utf-8": {
-                "schema": {
-                  "type": "string"
-                },
-                "examples": {}
-              }
-            }
+          "200": {
+            "description": "",
+            "headers": {}
           }
         },
-        "servers": [
-          {
-            "url": "https://shlyapaa.herokuapp.com"
-          }
-        ]
-      },
-      "get": {
-        "responses": {
-          "201": {
-            "description": "Auto generated using Swagger Inspector",
-            "content": {
-              "text/html; charset=utf-8": {
-                "schema": {
-                  "type": "string"
-                },
-                "examples": {}
-              }
-            }
-          }
-        }
-      },
-      "servers": [
-        {
-          "url": "https://shlyapaa.herokuapp.com"
-        }
-      ]
-    },
-    "/purchases": {
-      "post": {
-        "description": "Auto generated using Swagger Inspector",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/purchases_body"
-              },
-              "examples": {
-                "0": {
-                  "value": "{\"itemId\":3,\n    \"count\":5}"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "401": {
-            "description": "Auto generated using Swagger Inspector",
-            "content": {
-              "text/html; charset=utf-8": {
-                "schema": {
-                  "type": "string"
-                },
-                "examples": {}
-              }
-            }
-          }
-        },
-        "servers": [
-          {
-            "url": "https://shlyapaa.herokuapp.com"
-          }
-        ]
-      },
-      "get": {
-        "responses": {
-          "201": {
-            "description": "Auto generated using Swagger Inspector",
-            "content": {
-              "text/html; charset=utf-8": {
-                "schema": {
-                  "type": "string"
-                },
-                "examples": {}
-              }
-            }
-          }
-        }
-      },
-      "servers": [
-        {
-          "url": "https://shlyapaa.herokuapp.com"
-        }
-      ]
+        "deprecated": false
+      }
     },
     "/whoami": {
       "get": {
-        "description": "Auto generated using Swagger Inspector",
+        "tags": ["user"],
+        "summary": "/users/whoami",
+        "operationId": "/users/whoami",
+        "parameters": [],
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
-            "content": {
-              "application/json; charset=utf-8": {
-                "schema": {
-                  "type": "string"
-                },
-                "examples": {}
-              }
-            }
+            "description": "",
+            "headers": {}
           }
         },
-        "servers": [
-          {
-            "url": "https://shlyapaa.herokuapp.com"
+        "deprecated": false
+      }
+    },
+    "/sellers/items": {
+      "get": {
+        "tags": ["sellers"],
+        "summary": "/sellers/items",
+        "operationId": "/sellers/items",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
           }
-        ]
+        },
+        "deprecated": false
       },
-      "servers": [
-        {
-          "url": "https://shlyapaa.herokuapp.com"
-        }
-      ]
+      "post": {
+        "tags": ["sellers"],
+        "summary": "/sellers/items",
+        "operationId": "Post/sellers/items",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/sellersitemsrequest"
+              },
+              "example": {
+                "title": "Trololo22323",
+                "price": 25,
+                "quantity": 20
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/purchases": {
+      "get": {
+        "tags": ["purchase"],
+        "summary": "getPurchases",
+        "operationId": "getPurchases",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["purchase"],
+        "summary": "/purchases",
+        "operationId": "/purchases",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/purchasesrequest"
+              },
+              "example": {
+                "itemId": 2,
+                "count": 5
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/purchases/{id}": {
+      "get": {
+        "tags": ["purchase"],
+        "summary": "/purchases/:id",
+        "operationId": "/purchases/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["purchase"],
+        "summary": "patchPurchase",
+        "operationId": "patchPurchase",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/patchPurchaseRequest"
+              },
+              "example": {
+                "status": "FULFILLED"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/accounts/{id}": {
+      "get": {
+        "tags": ["accounts"],
+        "summary": "/accounts/:id",
+        "operationId": "/accounts/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cards/{id}": {
+      "get": {
+        "tags": ["cards"],
+        "summary": "/cards/:id",
+        "operationId": "/cards/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["cards"],
+        "summary": "deleteCard",
+        "operationId": "deleteCard",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cards": {
+      "post": {
+        "tags": ["cards"],
+        "summary": "/cards",
+        "operationId": "/cards",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cardsrequest"
+              },
+              "example": {
+                "number": "4629537523222432",
+                "expired": "05/27",
+                "cvv": 239
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": ["cards"],
+        "summary": "/cards",
+        "operationId": "Get/cards",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/balance/withdrawals/{id}": {
+      "patch": {
+        "tags": ["balance"],
+        "summary": "/withdrawals/:id",
+        "operationId": "/withdrawals/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/withdrawalsidrequest"
+              },
+              "example": {
+                "sum": 2
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/balance/deposits/{id}": {
+      "patch": {
+        "tags": ["balance"],
+        "summary": "/deposits/:id",
+        "operationId": "/deposits/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/depositsidrequest"
+              },
+              "example": {
+                "sum": 2.2
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/upload": {
+      "post": {
+        "tags": ["Misc"],
+        "summary": "upload",
+        "operationId": "upload",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": ["test"],
+                "type": "object",
+                "properties": {
+                  "test": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
     }
   },
   "components": {
     "schemas": {
-      "purchases_body": {
+      "authregistrationrequest": {
+        "title": "authregistrationrequest",
+        "required": ["login", "password", "role"],
         "type": "object",
         "properties": {
-          "itemId": {
-            "type": "integer"
+          "login": {
+            "type": "string"
           },
-          "count": {
-            "type": "integer"
+          "password": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
           }
+        },
+        "example": {
+          "login": "seller2",
+          "password": "12345",
+          "role": "SELLER"
         }
       },
-      "items_body": {
+      "authloginrequest": {
+        "title": "authloginrequest",
+        "required": ["login", "password"],
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "login": "seller1",
+          "password": "12345"
+        }
+      },
+      "sellersitemsrequest": {
+        "title": "sellersitemsrequest",
+        "required": ["title", "price", "quantity"],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "title": "Trololo22323",
+          "price": 25,
+          "quantity": 20
+        }
+      },
+      "sellersitemsidrequest": {
+        "title": "sellersitemsidrequest",
+        "required": ["quantity"],
         "type": "object",
         "properties": {
           "quantity": {
-            "type": "integer"
-          },
-          "price": {
-            "type": "integer"
-          },
-          "title": {
-            "type": "string"
+            "type": "integer",
+            "format": "int32"
           }
+        },
+        "example": {
+          "quantity": 30
         }
       },
-      "auth_register_body": {
+      "patchPurchaseRequest": {
+        "title": "patchPurchaseRequest",
+        "required": ["status"],
         "type": "object",
         "properties": {
-          "password": {
-            "type": "string"
-          },
-          "login": {
-            "type": "string"
-          },
-          "rolesadas": {
+          "status": {
             "type": "string"
           }
+        },
+        "example": {
+          "status": "FULFILLED"
         }
       },
-      "auth_login_body": {
+      "purchasesrequest": {
+        "title": "purchasesrequest",
+        "required": ["itemId", "count"],
         "type": "object",
         "properties": {
-          "password": {
+          "itemId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "itemId": 2,
+          "count": 5
+        }
+      },
+      "cardsrequest": {
+        "title": "cardsrequest",
+        "required": ["number", "expired", "cvv"],
+        "type": "object",
+        "properties": {
+          "number": {
             "type": "string"
           },
-          "login": {
+          "expired": {
             "type": "string"
+          },
+          "cvv": {
+            "type": "integer",
+            "format": "int32"
           }
+        },
+        "example": {
+          "number": "4629537523222432",
+          "expired": "05/27",
+          "cvv": 239
+        }
+      },
+      "withdrawalsidrequest": {
+        "title": "withdrawalsidrequest",
+        "required": ["sum"],
+        "type": "object",
+        "properties": {
+          "sum": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "sum": 2
+        }
+      },
+      "depositsidrequest": {
+        "title": "depositsidrequest",
+        "required": ["sum"],
+        "type": "object",
+        "properties": {
+          "sum": {
+            "type": "number"
+          }
+        },
+        "example": {
+          "sum": 2.2
         }
       }
     },
     "securitySchemes": {
-      "oauth2": {
-        "type": "oauth2",
-        "flows": {
-          "implicit": {
-            "authorizationUrl": "http://yourauthurl.com",
-            "scopes": {
-              "scope_name": "Enter your scopes here"
-            }
-          }
-        }
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
-  }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "items"
+    },
+    {
+      "name": "auth"
+    },
+    {
+      "name": "user"
+    },
+    {
+      "name": "sellers"
+    },
+    {
+      "name": "purchase"
+    },
+    {
+      "name": "accounts"
+    },
+    {
+      "name": "cards"
+    },
+    {
+      "name": "balance"
+    },
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
 }
