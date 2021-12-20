@@ -1,7 +1,8 @@
+import { Socket } from "socket.io";
 import { UserEntity } from "../db/entities/user.entity";
 import JwtService from "../services/jwt.service";
 
-export const authSocketMiddleware = async (socket, next) => {
+export const authSocketMiddleware = async (socket: Socket, next: Function) => {
   try {
     const token = socket.handshake.auth.token;
     if (!token) {

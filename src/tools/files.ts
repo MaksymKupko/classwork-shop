@@ -10,11 +10,13 @@ export const files = () => {
   router.use(fileUpload());
 
   router.post("/upload", async (req, res) => {
-    const file = req.files.test as UploadedFile;
+    if (req?.files) {
+      const file = req.files.test as UploadedFile;
 
-    await file.mv(filesPath + file.name);
+      await file.mv(filesPath + file.name);
 
-    return res.send("Success");
+      return res.send("Success");
+    }
   });
 
   router.get("/download/:name", async (req, res) => {

@@ -1,10 +1,10 @@
-import { Response } from "express";
+import { NextFunction, Response } from "express";
 import { BaseEntity } from "typeorm";
 import { IEntityRequest } from "./types";
 import { HttpError, wrapper } from "./wrapper.helpers";
 
 export const findItemByIdMiddleware = <T extends typeof BaseEntity>(entity: T) =>
-  wrapper(async (req: IEntityRequest<BaseEntity>, res: Response, next) => {
+  wrapper(async (req: IEntityRequest<BaseEntity>, res: Response, next: NextFunction) => {
     const id = req.params.id;
     const item = await entity.findOne(id);
 

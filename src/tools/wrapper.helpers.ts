@@ -16,7 +16,7 @@ export class HttpValidationError extends HttpError {
 export function wrapper(func: Function) {
   return async function (req: Request, res: Response, next: Function) {
     try {
-      await func.apply(this, [req, res, next]);
+      await func.apply(null, [req, res, next]);
     } catch (err) {
       next(err);
     }
@@ -26,7 +26,7 @@ export function wrapper(func: Function) {
 export function middlewareWrapper(func: Function) {
   return async function (req: Request, res: Response, next: Function) {
     try {
-      await func.apply(this, arguments);
+      await func.apply(null, arguments);
       next();
     } catch (error) {
       next(error);

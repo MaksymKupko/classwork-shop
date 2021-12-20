@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["@types", "node_modules/@types"],
     "module": "commonjs",
     "declaration": false,
     "esModuleInterop": true,
@@ -11,7 +12,10 @@
     "incremental": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "strict": true,
+    "strictPropertyInitialization": false
   },
+
   "exclude": ["node_modules", "dist"]
 }

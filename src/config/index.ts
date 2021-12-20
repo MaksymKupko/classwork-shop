@@ -10,8 +10,8 @@ export enum EnvEnum {
   HEROKU_URL = "HEROKU_URL",
   CARDS_SERVICE_URL = "CARDS_SERVICE_URL",
 }
-
-export let EnvConfig: Record<keyof typeof EnvEnum, any> = undefined;
+type TEnvConfig = Record<keyof typeof EnvEnum, any>;
+export let EnvConfig = null as unknown as TEnvConfig;
 
 const initEnv = () => {
   config();
